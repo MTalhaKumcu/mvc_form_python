@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h3>Dashboard</h3>
+<small>Welcome ,{{session["username"]}}</small>
+<hr>
+
+<a href="/addarticle" class ="btn btn-danger" >Add article</a>
+
+<br><br>
+    {% if artilces %}
+
+<div class= "alert alert-danger "><strong> Has not Article </strong></div> 
+
+
+    {% else %}
+
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+     <th scope="col">id</th>
+      <th scope="col">Head</th>
+      <th scope="col">Author</th>
+      <th scope="col">Date</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+        {% for article in articles  %}
+    <tr>
+      <th scope="row">{{article.id}}</th>
+      <td><a href ="/article/{{article.id}}">{{article.title}}</a></td>
+      <td>{{article.Author}}</td>
+      <td>{{article.created_date}}</td>
+      <td><a href= "/edit/{{article.id}}"  class= "btn btn-danger" >Update</a> </td>
+      <td><a href= "/delete/{{article.id}}" class= "btn btn-danger">Delete</a> </td>
+     </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endif %}
+
+
+{% endblock body %}
+
